@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToMany;
-import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.Set;
 
@@ -45,7 +44,23 @@ public class Subject
     {
 
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Relation students">
+    public Subject connect(Student s)
+    {
+        students.add(s);
+        return save();
+    }
+
+    public Subject disconnet(Student s)
+    {
+        students.remove(s);
+        return save();
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="CRUD">
     public static Subject findOrCreate(String name)
     {
         Optional<Subject> maybe = repo.findByName(name);
@@ -57,19 +72,6 @@ public class Subject
         Subject s = new Subject();
         s.name = name;
         return s.save();
-    }
-    //</editor-fold>
-
-    public Subject connect(Student s)
-    {
-        students.add(s);
-        return save();
-    }
-
-    public Subject disconnet(Student s)
-    {
-        students.remove(s);
-        return save();
     }
 
     public Subject reload()
@@ -89,6 +91,7 @@ public class Subject
         students.clear();
         repo.delete(save());
     }
+    //</editor-fold>
 
     //<editor-fold desc="Getters">
     public int getId()
