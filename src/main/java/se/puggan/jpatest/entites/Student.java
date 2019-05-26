@@ -46,6 +46,11 @@ public class Student
     }
     //</editor-fold>
 
+    public static Optional<Student> find(String name)
+    {
+        return repo.findByName(name);
+    }
+
     //<editor-fold desc="Relation subjects">
     public void connect(Subject s)
     {

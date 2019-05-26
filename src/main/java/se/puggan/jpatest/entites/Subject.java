@@ -60,6 +60,11 @@ public class Subject
     }
     //</editor-fold>
 
+    public static Optional<Subject> find(String name)
+    {
+        return repo.findByName(name);
+    }
+
     //<editor-fold desc="CRUD">
     public static Subject findOrCreate(String name)
     {

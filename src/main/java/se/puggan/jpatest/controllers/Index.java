@@ -44,7 +44,7 @@ public class Index
     public String deleteStudent(
         @PathVariable String name
     ) {
-        Optional<Student> maybe = Student.getRepo().findByName(name);
+        Optional<Student> maybe = Student.find(name);
         if(!maybe.isPresent()) {
             return "Not found";
         }
@@ -57,7 +57,7 @@ public class Index
     public String deleteSubject(
         @PathVariable String name
     ) {
-        Optional<Subject> maybe = Subject.getRepo().findByName(name);
+        Optional<Subject> maybe = Subject.find(name);
         if(!maybe.isPresent()) {
             return "Not found";
         }
